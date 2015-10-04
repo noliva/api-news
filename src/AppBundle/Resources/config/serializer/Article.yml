@@ -1,0 +1,36 @@
+AppBundle\Entity\Article:
+    exclusion_policy: all
+    properties:
+        id:
+            expose: true
+        authorEmail:
+            type: string
+            serialized_name: author_email
+            expose: true
+        title:
+            type: string
+            serialized_name: title
+            expose: true
+        slug:
+            type: string
+            serialized_name: slug
+            expose: true
+        content:
+            type: string
+            serialized_name: content
+            expose: true
+        comments:
+            type: ArrayCollection<AppBundle\Entity\Comment>
+            expose: true
+        rating:
+            type: integer
+            serialized_name: rating
+            expose: true
+        votes:
+            type: integer
+            serialized_name: votes
+            expose: true
+        createdAt:
+            type: DateTime<'d-m-Y H:i:s'>
+            serialized_name: created_at
+            expose: true

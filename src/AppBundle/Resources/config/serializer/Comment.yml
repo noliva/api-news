@@ -1,0 +1,17 @@
+AppBundle\Entity\Comment:
+    exclusion_policy: all
+    properties:
+        id:
+            expose: true
+        email:
+            type: string
+            serialized_name: email
+            expose: true
+        content:
+            type: string
+            serialized_name: content
+            expose: true
+        createdAt:
+            type: DateTime<'d-m-Y H:i:s'>
+            serialized_name: created_at
+            expose: true

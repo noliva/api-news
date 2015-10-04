@@ -1,0 +1,20 @@
+services:
+    app.repository.article:
+        class: AppBundle\Entity\Repository\ArticleRepository
+        factory: [ @doctrine.orm.default_entity_manager, getRepository ]
+        arguments:
+            - AppBundle\Entity\Article
+
+    app.repository.comment:
+        class: AppBundle\Entity\Repository\CommentRepository
+        factory: [ @doctrine.orm.default_entity_manager, getRepository ]
+        arguments:
+            - AppBundle\Entity\Comment
+
+    app.command.notify_author:
+            class: AppBundle\Command\NotifyAuthorCommand
+            arguments:
+                - @app.repository.comment
+                - @mailer
+            tags:
+                - { name: console.command }

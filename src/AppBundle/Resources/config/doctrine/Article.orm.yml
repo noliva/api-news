@@ -1,0 +1,55 @@
+AppBundle\Entity\Article:
+    table: article
+    type:  entity
+    repositoryClass: AppBundle\Entity\Repository\ArticleRepository
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+            column: title
+        slug:
+            type: string
+            length: 255
+            column: slug
+            gedmo:
+                slug:
+                    fields:
+                        - title
+        authorEmail:
+            type: string
+            length: 255
+            column: author_email
+        content:
+            type: text
+            column: content
+        rating:
+            type: integer
+            column: rating
+            nullable: true
+            options:
+                default: 0
+        votes:
+            type: integer
+            column: votes
+            nullable: true
+            options:
+                default: 0
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+
+    oneToMany:
+        comments:
+            targetEntity: AppBundle\Entity\Comment
+            mappedBy: article
+            nullable: true
+            cascade: ["persist", "remove"]

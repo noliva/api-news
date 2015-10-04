@@ -1,0 +1,31 @@
+AppBundle\Entity\Comment:
+    table: comment
+    type:  entity
+    repositoryClass: AppBundle\Entity\Repository\CommentRepository
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        email:
+            type: string
+            length: 255
+            column: email
+        content:
+            type: text
+            column: content
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+
+    manyToOne:
+        article:
+            targetEntity: AppBundle\Entity\Article
+            joinColumn:
+                name: article_id
+                referencedColumnName: id
